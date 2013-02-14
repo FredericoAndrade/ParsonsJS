@@ -96,10 +96,22 @@ ctx.beginPath();
 ctx.arc(124*m, 76*m, 7*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
+//10
+ctx.fillStyle = '#222';
+ctx.beginPath();
+ctx.arc(126*m, 75*m, 12, 0*m, circ);
+ctx.closePath();
+ctx.fill();
 //9
 ctx.fillStyle = '#aaa';
 ctx.beginPath();
-ctx.arc(127*m, 74*m, 3, 0*m, circ);
+ctx.arc(128*m, 75*m, 2, 0*m, circ);
+ctx.closePath();
+ctx.fill();
+//10
+ctx.fillStyle = '#aaa';
+ctx.beginPath();
+ctx.arc(126.5*m, 74*m, 1.5, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 
