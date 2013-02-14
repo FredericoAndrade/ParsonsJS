@@ -8,8 +8,8 @@ var m=3
 
 // outer gradient
 var gradient = ctx.createLinearGradient(7*m, 7*m, 193*m, 7*m);
-gradient.addColorStop(0, "211209") ;
-gradient.addColorStop(1, "#4A2805") ;
+gradient.addColorStop(0, "#120700") ;
+gradient.addColorStop(1, "#211203") ;
 ctx.fillStyle = gradient;
 ctx.fillRect(7*m, 7*m, 186*m, 186*m);
 
@@ -29,7 +29,7 @@ var circ=Math.PI * 2;
 //shadow
 ctx.fillStyle = '#8AABA5';
 ctx.beginPath();
-ctx.arc(96*m, 102*m, 57*m, 0*m, circ);
+ctx.arc(96*m, 98*m, 57*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 
@@ -37,12 +37,12 @@ ctx.fill();
 ctx.beginPath()
 ctx.lineWidth = 5*m;
 ctx.lineCap='round';
-ctx.moveTo(45*m, 135*m);
-ctx.lineTo(54*m, 126*m);
-ctx.moveTo(52*m, 142*m);
-ctx.lineTo(61*m, 133*m);
-ctx.moveTo(59*m, 149*m);
-ctx.lineTo(68*m, 140*m);
+ctx.moveTo(45*m, 129*m);
+ctx.lineTo(54*m, 120*m);
+ctx.moveTo(52*m, 136*m);
+ctx.lineTo(61*m, 127*m);
+ctx.moveTo(59*m, 143*m);
+ctx.lineTo(68*m, 134*m);
 ctx.strokeStyle = '#3B230B';
 ctx.stroke();
 
@@ -50,44 +50,56 @@ ctx.stroke();
 //1
 ctx.strokeStyle = '#945757';
 ctx.beginPath();
-ctx.arc(100*m, 94*m, 56*m, 0*m, circ);
+ctx.arc(100*m, 90*m, 54*m, 0*m, circ);
 ctx.closePath();
 ctx.lineWidth='3*m';
 ctx.stroke();
 //2
 ctx.fillStyle = '#FF9696';
 ctx.beginPath();
-ctx.arc(100*m, 94*m, 55*m, 0*m, circ);
+ctx.arc(100*m, 90*m, 53*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 //3
 ctx.fillStyle = '#FFE9D1';
 ctx.beginPath();
-ctx.arc(99*m, 92*m, 52*m, 0*m, circ);
+ctx.arc(99*m, 88*m, 50*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 //4
 ctx.fillStyle = '#FFEEE0';
 ctx.beginPath();
-ctx.arc(104*m, 88*m, 47*m, 0*m, circ);
+ctx.arc(104*m, 84*m, 45*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 //5
 ctx.fillStyle = '#9E6E3C';
 ctx.beginPath();
-ctx.arc(123*m, 81*m, 15*m, 0*m, circ);
+ctx.arc(123*m, 78*m, 15*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 //6
 ctx.fillStyle = '#BD8E5E';
 ctx.beginPath();
-ctx.arc(124*m, 80*m, 14*m, 0*m, circ);
+ctx.arc(124*m, 77*m, 14*m, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 //7
 ctx.fillStyle = '#000000';
 ctx.beginPath();
-ctx.arc(124*m, 80*m, 8*m, 0*m, circ);
+ctx.arc(124*m, 77*m, 8*m, 0*m, circ);
+ctx.closePath();
+ctx.fill();
+//8
+ctx.fillStyle = '#1a1a1a';
+ctx.beginPath();
+ctx.arc(124*m, 76*m, 7*m, 0*m, circ);
+ctx.closePath();
+ctx.fill();
+//9
+ctx.fillStyle = '#aaa';
+ctx.beginPath();
+ctx.arc(127*m, 74*m, 3, 0*m, circ);
 ctx.closePath();
 ctx.fill();
 
