@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Week 3 Homework, Generative Work</title>
+    </head>
+    <body style="margin:0px;">
+
+    	<!--
+    	Create a generative, artistic visual piece with the Canvas API. You can build upon last week's work but I encourage you to start fresh. This time you are free on what elements to be used, however you must use the following techniques talked about in class:
+
+			Procedural drawing with for loops
+			Randomness with Math.random()
+		
+		Bonus points:
+			Use requestAnimationFrame() and make it an animating piece. (This shoud still include for loops and randomness)
+		-->
+
+        <canvas id="canvas" width="1960" height="1040"></canvas>
+        <script>
+
+            var canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d')
+
+            var width = 1960,
+                height = 1040,
+                a = 40, 
+                c = 1,
+                x = a,
+                y = 10,
+                w = a,
+                h = 10,
+                timeoutID = setTimeout (function(){
+                drawShape()
+                },1000)  
+                count = 0     
+                interval = 1000/60          
+
+            animate()
+
+            function animate(){
+                requestAnimationFrame(animate)
+                
+                x += Math.random()*18
+                y += Math.random()*10
+                w += -Math.random()*-1
+
+                if (x > width){x=0}
+                if (y > width){y=0}
+                if (w > randomInt(20,60)){w=10}    
+
+                     ctx.fillStyle = 'rgba(' + 255 + ',' + randomInt(0, 255) + ',' + randomInt(0, 100) + ',' + .5 +')'
+                    drawShape()
+               
+            }
+
+            function drawShape(){
+				ctx.fillRect(x,y,w,h);
+				ctx.fill();
+			}
+
+            function randomInt (min, max) {
+                return Math.round(Math.random() * (max - min) + min)
+            }
+
+
+        </script>
+    </body>
+</html>
+
+
+
