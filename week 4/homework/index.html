@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Week 3 Homework, Generative Work</title>
+    </head>
+    <body style="margin:0px; background:#D2F7ED;">
+
+
+        <canvas id="canvas" width="200" height="740"></canvas>
+        <script>
+
+            var canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d'),
+            width  = canvas.width = window.innerWidth,
+            height = canvas.height = window.innerHeight,
+            shorts = 340*Math.random(), //length ≥340
+            randomHat = 25*Math.random(),
+            x = (width-200)-((width-200)*Math.random()),
+            y = (height-740)-((height-740)*Math.random()),
+            //colors
+            skin = "#FFCD76",
+            skinNose = "#C7A15D",
+            skinShadow = "#B59356",
+            skinMidValue = "#D9AF65",
+            hair = "#997B47",
+            beard = "#361F00",
+            eye = "#EEE4DB",
+            eyeBrow = "#5E4C2C",
+            //hat = "#BDFDD5",
+            hat = "rgb(" + randomInt(100,200) + "," + randomInt(100,200) + "," + randomInt(100,200) + ")"    
+            hatShadow = "#70967F",
+            shadesSide = "#5C4A2B",
+            shadesFrame = "#292113",
+            shadesHL = "#AB894E",
+            white = "#ffffff",
+            sandalStrap = "#61B7FF",
+            sandalStrap = "rgb(" + randomInt(0,255) + "," + randomInt(0,255) + "," + randomInt(0,255) + ")"
+            //sandalSole = "#FF1F20",
+            sandalSole = "rgb(" + randomInt(0,255) + "," + randomInt(0,255) + "," + randomInt(0,255) + ")"
+            // shirt = "#EF6E86",
+            shirt = "rgb(" + randomInt(155,255) + "," + randomInt(155,255) + "," + randomInt(155,255) + ")"
+            shirtStripes = "#FAFAE1",
+            //uw = "#FFF5D6",
+            //uw = "rgb(" + randomInt(100,220) + "," + randomInt(100,220) + "," + randomInt(100,220) + ")"
+            uw = shirtStripes
+            //shortsColor = "#F65656",
+            shortsColor = "rgb(" + randomInt(100,255) + "," + randomInt(100,255) + "," + randomInt(100,255) + ")"
+            armShadow = "rgba(74,60,36,0.4)",
+            icStick = "#FFAD76",
+            //ic = "#F3FFCC",
+            ic = "rgb(" + randomInt(100,255) + "," + randomInt(100,255) + "," + randomInt(100,255) + ")"
+            //icShadow = "#E0EDB1",
+            icShadow = "rgba(50,50,50,0.2)"
+            icGlaze = "rgba(110,110,110,0.3)",
+            ball = "#EAFF00",
+            floor = shirt
+            gravity = 0.3
+            
+            function randomInt (min, max) {
+                return Math.round(Math.random() * (max - min) + min)
+            }
+
+
+//droplet constructor
+           function Droplet (x, y, radius, color) {
+                
+                this.x = x
+                this.y = y
+                this.radius = radius
+                this.color = ic
+                this.speedY = .2
+            }
+
+            Droplet.prototype = {
+
+                update: function () {
+                    this.y += this.speedY
+                    this.speedY += gravity
+                },
+
+                draw: function () {
+                    ctx.beginPath()
+                    ctx.fillStyle = this.color
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+                    ctx.fill()
+                }
+
+            }
+
+            // Now we can use the "new" keyword to create a real Circle object
+            var droplet = new Droplet(x+74 + (Math.random()*13), y+117, 3, '#ff6666')
+
+
+            //for set interval, we need to create new objects, as the first time we define the variable only works once
+            setInterval(function () {
+                droplet = new Droplet(x+74 + (Math.random()*13), y+117, 3, '#ff6666')
+            }, 3000)
+            // var icecreamDrop = []
+
+            // for (var i = 0; i < 100; i++){
+            //     icecreamDrop.push(new Droplet())
+            // }
+
+            
+
+            
+            // start the animation
+            animate()
+
+            function animate () {
+                requestAnimationFrame(animate)
+                
+                // clear the canvas
+                ctx.clearRect(0, 0,window.innerWidth,window.innerHeight)
+
+                // update and draw the circle on every frame
+                
+                droplet.update()
+                drawShape()
+                droplet.draw()
+                
+                ctx.fillStyle=floor
+                ctx.fillRect(0,y+(741),width,10000)
+                //}
+            }
+
+            setInterval(drawShape,500)
+
+
+            function drawShape(){
+				//body
+                    
+                    ctx.fillStyle=skin; // skin color
+                    //legs
+                    ctx.fillRect(50+x,y+280,30,444)
+                    ctx.fillRect(127+x,y+280,30,444)
+                    ctx.fillRect(32+x,y+722,48,15)
+                    ctx.fillRect(127+x,y+722,48,15)
+                    //left arm
+
+                    ctx.beginPath()
+                    ctx.arc(33+x,y+119,18,0,Math.PI*2,true)//shoulder
+                    ctx.closePath()
+                    ctx.fill()
+                    ctx.beginPath()
+                    ctx.moveTo(15+x,y+117)
+                    ctx.lineTo(38+x,y+119)
+                    ctx.lineTo(23+x,y+315)
+                    ctx.lineTo(0+x,y+313)
+                    ctx.lineTo(15+x,y+117)
+                    ctx.closePath()
+                    ctx.fill()
+                    //right arm
+                    ctx.beginPath()
+                    ctx.arc(175+x,y+119,18,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill() //shoulder
+                    ctx.fillRect(173+x,y+119,20,383)
+                    //torso
+                    ctx.fillRect(35+x,y+101,138,228)
+                    //neck
+                    ctx.fillRect(90+x,y+77,25,37)
+                    //head
+                    ctx.fillRect(73+x,y+36,45,18)
+                    ctx.fillRect(74+x,y+25,43,67)
+                    
+                    ctx.fillStyle=skinShadow // shadow color
+                    ctx.strokeStyle=skinShadow // shadow color
+                    //leg shadows
+                    ctx.fillRect(50+x,y+315,30,shorts+63)
+                    ctx.fillRect(127+x,y+322,30,shorts+60)
+                    //neck shadows
+                    ctx.fillRect(90+x,y+93,25,6)
+                    //torso shadows
+                    ctx.beginPath()
+                    ctx.moveTo(35+x,y+153)
+                    ctx.lineTo(105+x,y+206)
+                    ctx.lineTo(173+x,y+153)
+                    ctx.lineTo(173+x,y+329)
+                    ctx.lineTo(35+x,y+329)
+                    ctx.lineTo(35+x,y+153)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.beginPath()
+                    ctx.arc(95+x,y+155,5,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.stroke()
+                    ctx.beginPath()
+                    ctx.arc(104+x,y+157,5,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.stroke()
+                    ctx.beginPath()
+                    ctx.arc(115+x,y+155,5,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.stroke()
+                    ctx.beginPath()
+                    ctx.arc(123+x,y+153,5,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.stroke()
+
+                    
+                    //head
+                    ctx.fillStyle=skinMidValue
+                    ctx.strokeStyle=skinMidValue
+                    ctx.fillRect(74+x,y+25,43,20)
+                    ctx.fillRect(73+x,y+36,2,13)
+                    ctx.fillRect(115+x,y+36,3,13)
+                    ctx.beginPath()
+                    ctx.arc(92+x,y+65,3,3.75,0.75)
+                    ctx.closePath
+                    ctx.stroke()
+
+                    //hair
+                    ctx.fillStyle=hair
+                    ctx.fillRect(74+x,y+25,2,9)
+                    ctx.fillRect(106+x,y+25,11,9)
+
+                    //beard
+                    ctx.fillStyle=beard
+                    ctx.fillRect(74+x,y+70,43,23)
+                    ctx.fillRect(78+x,y+89,35,8)
+                    ctx.beginPath()
+                    ctx.arc(113+x,y+93,4,0,Math.PI*2,true)
+                    ctx.arc(78+x,y+93,4,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //mouth
+                    ctx.fillStyle=skin // skin color
+                    ctx.fillRect(82+x,y+72,22,2)
+                    ctx.fillStyle=skinShadow // shadow
+                    ctx.fillRect(82+x,y+71,22,1)
+
+                    //right eye
+                    ctx.fillStyle=eye // skin color
+                    ctx.beginPath()
+                    ctx.arc(98+x,y+38,2,3,6,true)
+                    ctx.closePath()
+                    ctx.fill()
+                    
+                    ctx.fillStyle=eyeBrow // skin color
+                    ctx.fillRect(95+x,y+37,14,1)
+                    ctx.beginPath()
+                    ctx.arc(98+x,y+38,1,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //left eye
+                    ctx.fillStyle=skinNose
+                    ctx.beginPath()
+                    ctx.moveTo(76+x,y+38)
+                    ctx.lineTo(90+x,y+38)
+                    ctx.lineTo(84+x,y+53)
+                    ctx.lineTo(82+x,y+66)
+                    ctx.arc(84+x,y+66,2.5,3,1.5,true)
+                    ctx.lineTo(92+x,y+69)
+                    ctx.lineTo(92+x,y+70)
+                    ctx.lineTo(76+x,y+70)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=eye // skin color
+                    ctx.beginPath()
+                    ctx.arc(78+x,y+38,2,3,6,true)
+                    ctx.closePath()
+                    ctx.fill()
+                    
+                    ctx.fillStyle=eyeBrow // skin color
+                    ctx.fillRect(76+x,y+37,14,1)
+                    ctx.beginPath()
+                    ctx.arc(78+x,y+38,1,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //hat
+                    ctx.fillStyle=hat // hat color
+                    ctx.beginPath()
+                    ctx.arc(95+x,y+25,23,Math.PI,false)
+                    ctx.closePath()
+                    ctx.fill()
+                    ctx.fillRect(93+x,y+0,5,2)
+                    ctx.fillRect(randomHat+44+x,y+24,75,3)
+
+                    ctx.fillStyle=hatShadow // hat shadow
+                    ctx.fillRect(72+x,y+22,36,2)
+
+                    //shades
+                    ctx.fillStyle=shadesSide//side
+                    ctx.beginPath()
+                    ctx.moveTo(80+x,y+24)
+                    ctx.lineTo(82+x,y+14)
+                    ctx.lineTo(85+x,y+14)
+                    ctx.lineTo(82+x,y+24)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=shadesFrame//frame
+                    ctx.beginPath()
+                    ctx.moveTo(72+x,y+14)
+                    ctx.lineTo(99+x,y+14)
+                    ctx.lineTo(97+x,y+24)
+                    ctx.lineTo(85+x,y+24)
+                    ctx.lineTo(86+x,y+18)
+                    ctx.lineTo(86+x,y+18)
+                    ctx.lineTo(82+x,y+18)
+                    ctx.lineTo(81+x,y+24)
+                    ctx.lineTo(70+x,y+24)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.beginPath()
+                    ctx.moveTo(115+x,y+19)
+                    ctx.lineTo(116+x,y+19)
+                    ctx.lineTo(117+x,y+26)
+                    ctx.lineTo(116+x,y+26)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=shadesSide//side
+                    ctx.beginPath()
+                    ctx.moveTo(97+x,y+24)
+                    ctx.lineTo(99+x,y+14)
+                    ctx.lineTo(116+x,y+19)
+                    ctx.lineTo(118+x,y+26)
+                    ctx.lineTo(117+x,y+26)
+                    ctx.lineTo(115+x,y+20)
+                    ctx.lineTo(100+x,y+16)
+                    ctx.lineTo(98+x,y+24)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=shadesHL //highlight
+                    ctx.fillRect(84+x,y+15,14,1)
+
+                    ctx.fillStyle=white//highlight
+                    ctx.beginPath()
+                    ctx.moveTo(72+x,y+16)
+                    ctx.lineTo(74+x,y+16)
+                    ctx.lineTo(72+x,y+23)
+                    ctx.lineTo(71+x,y+23)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.beginPath()
+                    ctx.moveTo(88+x,y+16)
+                    ctx.lineTo(90+x,y+16)
+                    ctx.lineTo(88+x,y+23)
+                    ctx.lineTo(87+x,y+23)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //sandals
+                    ctx.strokeStyle=sandalStrap//straps
+                    ctx.lineWidth= 3
+                    ctx.beginPath()
+                    ctx.arc(48+x,y+736,16,0,4.8,true)
+                    ctx.moveTo(64+x,y+736)
+                    ctx.arc(80+x,y+736,16,3,4.7,false)
+                    ctx.stroke()
+                    ctx.closePath()
+                    
+                    ctx.beginPath()
+                    ctx.arc(143+x,y+736,16,0,4.8,true)
+                    ctx.moveTo(161+x,y+736)
+                    ctx.arc(175+x,y+736,16,3,4.7,false)
+                    ctx.stroke()
+                    ctx.closePath()
+
+                    ctx.fillStyle=sandalSole//soles
+                    ctx.fillRect(32+x,y+736,50,6)
+                    ctx.fillRect(126+x,y+736,50,6)
+
+                    //shirt
+                    ctx.fillStyle=shirt//shirt
+                    ctx.beginPath()
+                    ctx.moveTo(29+x,y+303)
+                    ctx.lineTo(29+x,y+200)
+                    ctx.arc(29+x,y+187,12.5,90*Math.PI/180,0,true)
+                    ctx.lineTo(41+x,y+101)
+                    ctx.lineTo(51+x,y+101)
+                    ctx.arc(104+x,y+101,53,3,0,true)
+                    ctx.lineTo(167+x,y+101)
+                    ctx.lineTo(167+x,y+187)
+                    ctx.arc(179+x,y+187,12.5,180*Math.PI/180,90*Math.PI/180,true)
+                    //ctx.lineTo(176,199)
+                    ctx.lineTo(179+x,y+303)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=shirtStripes //stripes
+                    ctx.fillRect(29+x,y+280,150,12)
+                    ctx.fillRect(29+x,y+255,150,12)
+                    ctx.fillRect(29+x,y+230,150,12)
+                    ctx.fillRect(29+x,y+205,150,12)
+                    ctx.beginPath()
+                    ctx.moveTo(40+x,y+192)
+                    ctx.lineTo(40+x,y+180)
+                    ctx.lineTo(167+x,y+180)
+                    ctx.lineTo(167+x,y+192)
+                    ctx.closePath
+                    ctx.fill()
+                    ctx.fillRect(41+x,y+155,126,12)
+                    ctx.beginPath()
+                    ctx.moveTo(41+x,y+142)
+                    ctx.lineTo(41+x,y+130)
+                    ctx.lineTo(60+x,y+130)
+                    ctx.lineTo(71+x,y+142)
+                    ctx.closePath
+                    ctx.fill()
+                    ctx.beginPath()
+                    ctx.moveTo(41+x,y+117)
+                    ctx.lineTo(41+x,y+105)
+                    ctx.lineTo(51+x,y+105)
+                    ctx.lineTo(53+x,y+117)
+                    ctx.closePath
+                    ctx.fill()
+                    ctx.beginPath()
+                    ctx.moveTo(154+x,y+117)
+                    ctx.lineTo(156+x,y+105)
+                    ctx.lineTo(167+x,y+105)
+                    ctx.lineTo(167+x,y+117)
+                    ctx.closePath
+                    ctx.fill()
+                    ctx.beginPath()
+                    ctx.moveTo(135+x,y+142)
+                    ctx.lineTo(148+x,y+130)
+                    ctx.lineTo(167+x,y+130)
+                    ctx.lineTo(167+x,y+142)
+                    ctx.closePath
+                    ctx.fill()
+                    
+                    //icecream arm
+                    ctx.fillStyle=armShadow//shadows
+                    ctx.beginPath()
+                    ctx.moveTo(29+x,y+303)
+                    ctx.lineTo(29+x,y+267)
+                    ctx.lineTo(55+x,y+129)
+                    ctx.lineTo(84+x,y+127)
+                    ctx.lineTo(84+x,y+130)
+                    ctx.lineTo(99+x,y+130)
+                    ctx.lineTo(99+x,y+162)
+                    ctx.lineTo(76+x,y+162)
+                    ctx.lineTo(37+x,y+303)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //icecream
+                    ctx.fillStyle=icStick//icecream stick
+                    ctx.fillRect(79+x,y+119,4,11)
+                    ctx.fillStyle=ic//icecream
+                    ctx.fillRect(71+x,y+91,19,29)
+                    ctx.beginPath()
+                    ctx.arc(80.5+x,y+91,9.5,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill()
+                    ctx.fillStyle=icShadow//icecream shadow
+                    ctx.fillRect(73.5+x,y+91,5,23)
+                    ctx.beginPath()
+                    ctx.arc(76+x,y+91,2.5,0,Math.PI,true)
+                    ctx.moveTo(76+x,y+114)
+                    ctx.arc(76+x,y+114,2.5,0,Math.PI,false)
+                    ctx.closePath()
+                    ctx.fill()
+                    ctx.fillRect(82+x,y+91,5,23)
+                    ctx.beginPath()
+                    ctx.arc(84.5+x,y+91,2.5,0,Math.PI,true)
+                    ctx.moveTo(84.5+x,y+114)
+                    ctx.arc(84.5+x,y+114,2.5,0,Math.PI,false)
+                    ctx.closePath()
+                    ctx.fill()
+                    ctx.fillStyle=icGlaze//shadow
+                    ctx.beginPath()
+                    ctx.moveTo(71+x,y+120)
+                    ctx.lineTo(71+x,y+94)
+                    ctx.lineTo(90+x,y+106)
+                    ctx.lineTo(90+x,y+120)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //foreground left arm
+                    ctx.fillStyle=skin//skincolor
+                    ctx.beginPath()
+                    ctx.moveTo(0+x,y+314)
+                    ctx.lineTo(55+x,y+129)
+                    ctx.lineTo(98+x,y+130)
+                    ctx.lineTo(98+x,y+161)
+                    ctx.lineTo(66+x,y+161)
+                    ctx.lineTo(23+x,y+315)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    //right hand
+                    ctx.beginPath()
+                    ctx.moveTo(163+x,y+508)
+                    ctx.lineTo(163+x,y+488)
+                    ctx.lineTo(193+x,y+488)
+                    ctx.lineTo(193+x,y+513)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.save()
+                    ctx.fillStyle=ball//ball
+                    ctx.beginPath()
+                    ctx.arc(183+x,y+492,16,0,Math.PI*2,true)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.strokeStyle=white//ball thread
+                    ctx.lineWidth=1
+                    ctx.beginPath()
+                    ctx.arc(193+x,y+502,16,-70*Math.PI/180,159*Math.PI/180,true)
+                    ctx.stroke()             
+                    ctx.closePath()
+
+                    ctx.beginPath()
+                    ctx.arc(155+x,y+467,25,20*Math.PI/180,60*Math.PI/180,false)
+                    ctx.stroke()             
+                    ctx.closePath()
+
+                    ctx.restore()
+
+                    ctx.fillRect(186+x,y+470,7,35)
+
+                    //bottoms
+                    ctx.fillStyle=uw//underwear
+                    ctx.beginPath()
+                    ctx.moveTo(35+x,y+309)
+                    ctx.lineTo(173+x,y+305)
+                    ctx.lineTo(173+x,y+315)
+                    ctx.lineTo(35+x,y+319)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    ctx.fillStyle=shortsColor//shorts
+                    ctx.beginPath()
+                    ctx.moveTo(29+x,y+306)
+                    ctx.lineTo(175+x,y+310)
+                    ctx.lineTo(174+x,y+322)
+                    ctx.lineTo(176+x,y+shorts+377) //var short determines pant leg length
+                    ctx.lineTo(101+x,y+shorts+375)
+                    ctx.lineTo(104+x,y+348)
+                    ctx.lineTo(98+x,y+348)
+                    ctx.lineTo(99+x,y+shorts+375)
+                    ctx.lineTo(24+x,y+shorts+373)
+                    ctx.lineTo(28+x,y+319)
+                    ctx.closePath()
+                    ctx.fill()
+
+                    
+
+
+			}
+
+
+        </script>
+
+    </body>
+</html>
+
+
+

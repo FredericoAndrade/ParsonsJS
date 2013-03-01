@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Week 3 Homework, Generative Work</title>
+        <style type="text/css"></style>
+    </head>
+    <body style="margin:0px;">
+500
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <script>
+
+            var canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d')
+
+            var width = 500
+                height  = 500
+
+            
+
+            var gravity = .2
+
+            function Umbrella () {
+
+                this.x = Math.random() * 800
+                this.y = 0
+                this.radius = 10
+
+                this.speedX = Math.random() * 10 - 5
+                this.speedY = Math.random() * 10 - 5
+
+            }
+
+            Umbrella.prototype = {
+
+                update:function () {
+                    this.speedY += gravity
+
+                    this.x += this.speedX
+                    this.y += this.speedY
+
+                    if (this.y > height - this.radius) {
+                        this.speedY *= 1
+                    }
+
+                    if (this.x > (width - this.radius)|| this.x <) {
+                        this.speedX *= -1
+                    }
+
+                }, 
+
+                draw:function () {
+
+                    ctx.beginPath()
+                    ctx.arc(this.x, this.y, 10, 0, Math.PI * 2)
+                    ctx.fillStyle="#ff6666"
+                    ctx.fill()
+
+                }
+
+            }
+
+            var umbrellas = []
+
+
+            for (var i = 0; i < 100; )
+            animate()
+
+            function animate () {
+                requestAnimationFrame(animate)
+
+                ctx.fillStyle = '#ffffff'
+                ctx.fillRect = (0,0,width,height)
+
+            }            
+
+
+        </script>
+    </body>
+</html>
+
+
+

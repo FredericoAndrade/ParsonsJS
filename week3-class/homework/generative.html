@@ -24,12 +24,12 @@
 
             var width = 1960,
                 height = 1040,
-                a = 40, 
+                a = 100, 
                 c = 1,
                 x = a,
                 y = 10,
                 w = a,
-                h = 10,
+                h = 10, 
                 timeoutID = setTimeout (function(){
                 drawShape()
                 },1000)  
@@ -41,8 +41,8 @@
             function animate(){
                 requestAnimationFrame(animate)
                 
-                x += Math.random()*18
-                y += Math.random()*10
+                x += Math.random()*40
+                y += Math.random()*20
                 w += -Math.random()*-1
 
                 if (x > width){x=0}
