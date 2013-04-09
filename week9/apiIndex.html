@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>For Action API</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+    <body>
+    	
+        <form id="form">
+
+            <input name="type" placeholder="type">
+            
+        </form>
+			<p>please search by 'petition' or 'goal'</p>
+
+        <button id="update">update</button>
+
+        <div>
+            <pre id="display">
+
+            </pre>
+        </div>
+
+        <div id="better-display"></div>
+
+        <script>
+
+        	$( "#form" ).on( "submit", function( event ) {
+			  event.preventDefault();
+			  console.log( $(this).serialize() );
+			});
+
+
+            $('#update').on('click', function () {
+
+                // jQuery's serialize() method
+                // converts the input fields in a <form>
+                // into a query string that you can use in URLs
+                var query = $('#form').serialize()
+
+                // Note the `&callback=?` here!
+                // it signals to jQuery and the server
+                // that we want to use JSONP to get around same-origin policy
+                $.getJSON('http://localhost:8080/cause?' + query + '&callback=?', function (data) {
+
+                    var display = $('#better-display')
+
+                    // clean previous stuff
+                    display.empty()
+
+                    // loop through the returned data
+                    data.forEach(function (person) {
+                        // create an element for each returned person
+                        // then append to display
+                        var causeElement = $('<div class="cause">' + cause.id + '</div>')
+                        display.append(causeElement)
+
+                    })
+                })
+            })
+
+        </script>
+
+    </body>
+</html>

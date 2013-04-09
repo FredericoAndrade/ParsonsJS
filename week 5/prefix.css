@@ -1,0 +1,15 @@
+.example{
+	-webkit-transition	: ...;
+	-moz-transition		: ...;
+	-ms-transition		: ...;
+	-o-transition		: ...;			//opera switched to webkit
+}
+
+.fade{
+	opacity				: .5;
+	-webkit-transition	: opacity .5s linear;
+}
+
+.fade:hover{
+	opacity				: 1;
+}

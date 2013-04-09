@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html class="no-js"> <!--<![endif]-->
+	<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style type="text/css">
+
+    </style>
+    </head>
+    <body>
+
+    	<form id='form'>
+    	<input name = 'maxage' placeholder='maxage'>
+    	<br>
+    	<input name = 'minage' placeholder='minage'>
+    	<br>
+    	<input name = 'gender' placeholder='gender'>
+    	<br>
+	    </form>
+    	<button id = 'update'>Update</button>
+
+    	<div>
+    		<pre id = 'update'>
+
+    		</pre>
+		</div>
+
+		<div id="better-display"></div>
+
+    <script type="text/javascript">
+
+    $("#update").on('click', function (){
+
+	    var values = $('#form').serialize()
+
+		$.getJSON('http://localhost:8080/people?' + values + '&callback=?', function (data){
+			
+			$('#better-display').empty()
+
+			data.forEach(function (person){
+				var personElement = $('<div class="names">' + person.name + '</div>')
+				$('#better-display').append(personElement)
+			})
+		})
+
+    })
+
+
+
+
+      </script>
+    </body>
+</html>
