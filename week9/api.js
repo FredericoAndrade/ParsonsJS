@@ -3,7 +3,7 @@ var express = require('express'),
 
 var data = [
 
-//data structure 
+//data structure
 
 //ac.tv/cause
 		//name
@@ -104,7 +104,7 @@ var data = [
 		description:"Provide a tent to shelter a family from the elements."
 	}
 
-]	
+]
 
 app.get('/', function (req, res) { //require + respond
 	var returnString = "swag"
@@ -153,7 +153,7 @@ app.get('/cause', function (req,res){
  //        res.send(returnArray)
  //    }
 
-	res.send( 
+	res.send(
 		'<div> <h1> Cause </h1> </div> (' + JSON.stringify(data,'quantity',null, 4) +')'
 		)
 

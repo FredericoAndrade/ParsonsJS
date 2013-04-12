@@ -10,21 +10,15 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
     <body>
-    	
+
         <form id="form">
 
             <input name="type" placeholder="type">
-            
+
         </form>
 			<p>please search by 'petition' or 'goal'</p>
 
         <button id="update">update</button>
-
-        <div>
-            <pre id="display">
-
-            </pre>
-        </div>
 
         <div id="better-display"></div>
 
@@ -58,7 +52,7 @@
                         // create an element for each returned person
                         // then append to display
                         var causeElement = $('<div class="cause">' + cause.id + '</div>')
-                        display.append(causeElement)
+                        display.append(causeElement )
 
                     })
                 })
