@@ -80,11 +80,6 @@ body a:active{
 }
 
 #data article.listing{
-  background:#efefef;
-  margin-top: 20px;
-  padding:1px 15px;
-  border:2px solid #ececec;
-  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -94,12 +89,17 @@ body a:active{
     margin:15px 0px;
 }
 
-#data article p{
-  margin:0px;
-  font-size:0.7em;
-  display:block;
-  height:25px;
-  margin-bottom:5px;
+#data p.name{
+    font-weight: 100;
+    font-size: .6em;
+    display:block;
+    margin:15px 0px;
+}
+
+#display a{
+  padding:5px;
+  margin:0px 5px 0px 0px;
+  float:left;
 }
 
 #form p{
@@ -107,10 +107,6 @@ body a:active{
   font-size:.6em;
   font-weight: 100;
   font-style: italic;
-}
-
-#display{
-  font-size: .65em;
 }
 
 .image{

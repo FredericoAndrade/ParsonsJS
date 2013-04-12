@@ -23,26 +23,26 @@
       <img id="image" class="image"/>
     </div>
 <div class="map">
-      <img src="images/1.png" class="imageCom a1"/>
-      <img src="images/2.png" class="imageCom a2"/>
-      <img src="images/3.png" class="imageCom a3"/>
-      <img src="images/4.png" class="imageCom a4"/>
-      <img src="images/5.png" class="imageCom a5"/>
-      <img src="images/8.png" class="imageCom a8"/>
-      <img src="images/7.png" class="imageCom a7"/>
-      <img src="images/6.png" class="imageCom a6"/>
-      <img src="images/9.png" class="imageCom a9"/>
-      <img src="images/11.png" class="imageCom a11"/>
-      <img src="images/12.png" class="imageCom a12"/>
-      <img src="images/13.png" class="imageCom a13"/>
-      <img src="images/14.png" class="imageCom a14"/>
-      <img src="images/15.png" class="imageCom a15"/>
-      <img src="images/10.png" class="imageCom a10"/>
+      <img src="images/1.png" class="imageCom a1" id="Galicia"/>
+      <img src="images/2.png" class="imageCom a2" id="Asturia"/>
+      <img src="images/3.png" class="imageCom a3" id="Castilla"/>
+      <img src="images/4.png" class="imageCom a4" id="Cantabria"/>
+      <img src="images/5.png" class="imageCom a5" id="Basque Country"/>
+      <img src="images/8.png" class="imageCom a8" id="Aragon"/>
+      <img src="images/7.png" class="imageCom a7" id="Navarra"/>
+      <img src="images/6.png" class="imageCom a6" id="La Rioja"/>
+      <img src="images/9.png" class="imageCom a9" id="Cataluña"/>
+      <img src="images/11.png" class="imageCom a11" id="Extremadura"/>
+      <img src="images/12.png" class="imageCom a12" id="Castilla La Mancha"/>
+      <img src="images/13.png" class="imageCom a13" id="Valencia"/>
+      <img src="images/14.png" class="imageCom a14" id="Murcia"/>
+      <img src="images/15.png" class="imageCom a15" id="Andalucia"/>
+      <img src="images/10.png" class="imageCom a10" id="Madrid"/>
         </div>
     <div id="data">
       <h1>Data</h1>
       <p>Spain is a very culturally diverse country with influences ranging from France all the way down to Lybia. Language is the best way to understand people's identity.</p>
-      <div id="form">
+      <form id="form">
         <input name="name" placeholder="Name" type="text" list="communities">
         <datalist id="communities">
           <option value="Aragonese"></option>
@@ -55,6 +55,18 @@
           <option value="Spanish"></option>
         </datalist>
         <br>
+        <input name="nativeName" placeholder="Native Name" type="text" list="nativeCommunities">
+        <datalist id="nativeCommunities">
+          <option value="Español"></option>
+          <option value="Galego"></option>
+          <option value="Asturianu"></option>
+          <option value="Euskera"></option>
+          <option value="Fabla"></option>
+          <option value="Aranès"></option>
+          <option value="Català"></option>
+          <option value="Estremeñu"></option>
+        </datalist>
+        <br>
         <input name="status" placeholder="Status. National, Regional or Unrecognized." type="text" list="status">
         <datalist id="status">
           <option value="National"></option>
@@ -62,12 +74,12 @@
           <option value="Unrecognized"></option>
         </datalist>
         <br>
-        <input name="population" placeholder="Population">
-        <br>
-
-      </div>
+      </form>
       <button id="refresh">refresh</button>
       <div id='display'>
+        <!--article class='listing'>
+          <h3 class="langName">Aragonese</h3>
+        </article-->
 
       </div>
 
@@ -75,13 +87,26 @@
 
   </div>
 <script type="text/javascript">
-$('#refresh').on('click',function(){
 
-  $.getJSON('http://localhost:8080/languages?' + '&callback=?', function (data){
-    var display = $('#display'),
-        data=JSON.stringify(data)
+  $('#refresh').on('click',function(){
 
-    display.html(data)
+    var query = $('#form').serialize()
+
+    console.log(query)
+
+    $.getJSON('http://localhost:8080/languages?' + query + '&callback=?', function (data){
+
+    var display = $('#display')
+
+    display.empty()
+
+    data.forEach(function(lang){
+
+      var langElement = $('<article class="listing"><p class="name"><a href="#">'+ lang.name +' </a> <a href="#">'+ lang.status +' </a> <a href="#">'+ lang.populationL1 +' speakers</a></p></article>')
+
+      display.append(langElement)
+    })
+
   })
 
 })
