@@ -3,7 +3,7 @@
         "name": "Spanish",
         "nativeName": "Español",
         "status": "National",
-        "distribution": "nationwide",
+        "distribution": "Spain",
         "populationL1": 407000000,
         "populationL2": 600000000,
         "id":0
@@ -30,11 +30,10 @@
         "name": "Basque",
         "nativeName": "Euskera",
         "status": "Regional",
-        "distribution": "Basque Country",
+        "distribution": "Basque",
         "populationL1": 715000,
         "populationL2": "None - insufficient data",
         "id":4
-
     },
     {
         "name": "Aragonese",

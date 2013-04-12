@@ -20,6 +20,7 @@ app.get('/languages', function (req, res){
         nativeName = req.query.nativeName,
         status = req.query.status,
         population = req.query.populationL1,
+        distribution = req.query.distribution,
         callback = req.query.callback
 
     var returnArray = []
@@ -37,6 +38,10 @@ app.get('/languages', function (req, res){
             }
 
             if (status && data.status !== status) {
+                qualified = false
+            }
+
+            if (distribution && data.distribution !== distribution) {
                 qualified = false
             }
 

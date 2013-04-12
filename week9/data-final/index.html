@@ -22,12 +22,12 @@
       <h1 id="title">Languages of Spain!</h1>
       <img id="image" class="image"/>
     </div>
-<div class="map">
+    <div class="map">
       <img src="images/1.png" class="imageCom a1" id="Galicia"/>
       <img src="images/2.png" class="imageCom a2" id="Asturias"/>
       <img src="images/3.png" class="imageCom a3" id="Castilla"/>
       <img src="images/4.png" class="imageCom a4" id="Cantabria"/>
-      <img src="images/5.png" class="imageCom a5" id="BasqueCountry"/>
+      <img src="images/5.png" class="imageCom a5" id="Basque"/>
       <img src="images/8.png" class="imageCom a8" id="Aragon"/>
       <img src="images/7.png" class="imageCom a7" id="Navarra"/>
       <img src="images/6.png" class="imageCom a6" id="La Rioja"/>
@@ -41,9 +41,10 @@
         </div>
     <div id="data">
       <h1>Data</h1>
-      <p>Spain is a very culturally diverse country with influences ranging from France all the way down to Lybia. Language is the best way to understand people's identity.</p>
+      <p>Spain is a very culturally diverse country with influences ranging from France all the way down to Lybia. Language is the best way to understand people's identity.</p><br>
+      <p>Press the &darr; key for suggestions</p>
       <form id="form">
-        <input name="name" placeholder="Name" type="text" list="communities">
+        <input class="input"name="name" placeholder="Name" type="text" list="communities">
         <datalist id="communities">
           <option value="Aragonese"></option>
           <option value="Aranese"></option>
@@ -55,7 +56,7 @@
           <option value="Spanish"></option>
         </datalist>
         <br>
-        <input name="nativeName" placeholder="Native Name" type="text" list="nativeCommunities">
+        <input class="input"name="nativeName" placeholder="Native Name" type="text" list="nativeCommunities">
         <datalist id="nativeCommunities">
           <option value="Español"></option>
           <option value="Galego"></option>
@@ -67,26 +68,36 @@
           <option value="Estremeñu"></option>
         </datalist>
         <br>
-        <input name="status" placeholder="Status. National, Regional or Unrecognized." type="text" list="status">
+        <input class="input"name="status" placeholder="Status. National, Regional or Unrecognized." type="text" list="status">
         <datalist id="status">
           <option value="National"></option>
           <option value="Regional"></option>
           <option value="Unrecognized"></option>
         </datalist>
         <br>
+        <input class="input"name="distribution" placeholder="Distribution" type="text" list="distribution">
+        <datalist id="distribution">
+          <option value="Spain"></option>
+          <option value="Galicia"></option>
+          <option value="Asturias"></option>
+          <option value="Basque"></option>
+          <option value="Aragon"></option>
+          <option value="Cataluña"></option>
+          <option value="Extremadura"></option>
+        </datalist>
+        <br>
       </form>
       <button id="refresh">refresh</button>
-      <div id='display'>
-        <!--article class='listing'>
-          <h3 class="langName">Aragonese</h3>
-        </article-->
+
+
+    </div>
+    <div id='display'>
 
       </div>
 
-    </div>
-
   </div>
 <script type="text/javascript">
+
 
   $('#refresh').on('click',function(){
 
@@ -106,6 +117,10 @@
 
       display.append(langElement)
 
+      // $('#'+lang.distribution).hover(function(){
+      //   console.log('test')
+      // })//only works with active entries
+
       $('.'+lang.name).hover(function(){
 
         if(lang.name == "Spanish"){
@@ -113,6 +128,17 @@
         }
 
         $('#'+lang.distribution).toggleClass('imageComHover')
+
+      })
+
+      $('.'+lang.name).on('click',function(){
+
+        if(lang.name == "Spanish"){
+          $('.imageCom').toggleClass('imageComHover')
+        }
+
+        $('#'+lang.distribution).toggleClass('imageComHover')
+
       })
     })
 

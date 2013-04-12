@@ -55,11 +55,13 @@ body a:active{
 
 #wrapper{
   width:780px;
+  height:530px;
   margin:auto;
 }
 #container{
   width:420px;
   float:left;
+  margin-bottom: 10px;
 }
 #data{
   float:right;
@@ -68,6 +70,10 @@ body a:active{
 #data p{
   margin:20px 10px;
   font-size:.6em;
+}
+
+#refresh{
+  margin-top: 15px
 }
 
 #data h1{
@@ -83,11 +89,17 @@ body a:active{
 .listing{
     overflow: auto;
     font-weight: 100;
-    font-size: .6em;
+    font-size: .5em;
     display:block;
     margin:15px 0px;
 }
 
+#display{
+  clear: both;
+  padding-top: 0;
+  display: block;
+  border-top: 5px solid #eee;
+}
 #display a{
   padding:5px;
   margin:0px 5px 0px 0px;
@@ -104,19 +116,13 @@ body a:active{
 .image{
   width:420.5px;
   height:420.5px;
-  background-image: url('images/spain-01.png');
-  border:none;
-}
-
-.image2{
-  width:420.5px;
-  height:420.5px;
   background-image: url('images/spain-02.png');
   border:none;
 }
 
+
 .imageCom{
-  opacity: .2;
+  opacity: .0;
 }
 
 .imageCom:hover,.imageComHover{
@@ -153,12 +159,12 @@ left:86.2px;
 top:80.9px;
 }
 .a4{
-left:140.6px;
-top:72.6px;
+left:140.4px;
+top:72.4px;
 }
 .a5{
 left:175.2px;
-top:74.6px;
+top:74.4px;
 }
 .a6{
 left:183px;
