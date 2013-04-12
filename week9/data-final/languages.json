@@ -1,0 +1,75 @@
+[
+    {
+        "name": "Spanish",
+        "nativeName": "Español",
+        "status": "National",
+        "distribution": "nationwide",
+        "populationL1": 407000000,
+        "populationL2": 600000000,
+        "id":0
+    },
+    {
+        "name": "Galician",
+        "nativeName": "Galego",
+        "status": "Regional",
+        "distribution": "Galicia",
+        "populationL1": 3200000,
+        "populationL2": "None - insufficient data",
+        "id":1
+    },
+    {
+        "name": "Asturian",
+        "nativeName": "Asturianu",
+        "status": "Unrecognized",
+        "distribution": "Asturias",
+        "populationL1": 110000,
+        "populationL2": 450000,
+        "id":2
+    },
+    {
+        "name": "Basque",
+        "nativeName": "Euskera",
+        "status": "Regional",
+        "distribution": "Basque Country",
+        "populationL1": 715000,
+        "populationL2": "None - insufficient data",
+        "id":4
+
+    },
+    {
+        "name": "Aragonese",
+        "nativeName": "Fabla",
+        "status": "Regional",
+        "distribution": "Aragon",
+        "populationL1": 10000,
+        "populationL2": 20000,
+        "id":8
+    },
+    {
+        "name": "Aranese",
+        "nativeName": "Aranès",
+        "status": "Regional",
+        "distribution": "Cataluña",
+        "populationL1": 5000,
+        "populationL2": "None - insufficient data",
+        "id":9
+    },
+    {
+        "name": "Catalan",
+        "nativeName": "Català",
+        "status": "Regional",
+        "distribution": "Cataluña, Valencia",
+        "populationL1": 11500000,
+        "populationL2": 500000,
+        "id":9
+    },
+    {
+        "name": "Extremaduran",
+        "nativeName": "Estremeñu",
+        "status": "Unrecognized",
+        "distribution": "Extremadura",
+        "populationL1": 200000,
+        "populationL2": "None - insufficient data",
+        "id":11
+    }
+]
