@@ -1,0 +1,202 @@
+html, body{
+  height:100%;
+  width:100%;
+  font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  color: #222;
+}
+
+body p{
+  float:left;
+  margin-right: 60px;
+  margin-left:20px;
+  margin-top:23px;
+}
+
+body a{
+  padding:30px;
+  background:#efefef;
+  border:2px solid #ececec;
+  border-radius: 3px;
+  float:right;
+  color: #222;
+  text-decoration: none;
+}
+
+body a:hover{
+  background:#eaeaea;
+  border:2px solid #e7e7e7;
+  box-shadow: none;
+}
+
+body a:active{
+  background:#ccc;
+  box-shadow: none;
+  border:2px solid #cacaca;
+}
+
+#refresh{
+  width:100%;
+  padding:5% 0px;
+  background:#eee;
+  border:1px solid #eee;
+  cursor:pointer;
+  margin-top: 3px;
+}
+
+#title{
+  font-weight: 100;
+  font-size: 1.7em;
+  width:420px;
+  float:left;
+  margin-top: 15px;
+}
+
+#wrapper{
+  width:780px;
+  margin:auto;
+}
+#container{
+  width:420px;
+  float:left;
+}
+#data{
+  float:right;
+  width:340px;
+}
+#data h1{
+  width:100%;
+  text-align: center;
+  font-weight: 100;
+  margin:0px;
+  padding:10px 0px 20px 0px;
+  border-bottom: 5px solid #eee;
+}
+
+#data article.listing{
+  background:#efefef;
+  margin-top: 20px;
+  padding:1px 15px;
+  border:2px solid #ececec;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#data article h3, #data article h5{
+    font-weight: 100;
+    display:block;
+    margin:15px 0px;
+}
+
+#data article p{
+  margin:0px;
+  font-size:0.7em;
+  display:block;
+  height:25px;
+  margin-bottom:5px;
+}
+
+#display{
+  font-size: .65em;
+}
+
+.image{
+  width:420.5px;
+  height:420.5px;
+  background-image: url('images/spain-01.png');
+  border:none;
+}
+
+.image2{
+  width:420.5px;
+  height:420.5px;
+  background-image: url('images/spain-02.png');
+  border:none;
+}
+
+.imageCom{
+  opacity: .2;
+}
+
+.imageCom:hover{
+  opacity:1;
+}
+
+.map{
+  position:absolute;
+  margin:auto;
+  top:116px;
+}
+
+#data input{
+  width:96%;
+  padding:3% 0px 3% 3%;
+  border:1px dotted #ccc;
+  border-radius: 3px;
+}
+
+.a1, .a2, .a3, .a4, .a5, .a6, .a7, .a8, .a9, .a10, .a11, .a12, .a13, .a14, .a15{
+  position:absolute;
+}
+
+.a1{
+left:31.3px;
+top:63.6px;
+}
+.a2{
+left:83.9px;
+top:67.9px;
+}
+.a3{
+left:86.2px;
+top:80.9px;
+}
+.a4{
+left:140.6px;
+top:72.6px;
+}
+.a5{
+left:175.2px;
+top:74.6px;
+}
+.a6{
+left:183px;
+top:100.4px;
+}
+.a7{
+left:198.8px;
+top:78.3px;
+}
+.a8{
+left:206.8px;
+top:91.0px;
+}
+.a9{
+left:264.4px;
+top:93.4px;
+}
+.a10{
+left:148px;
+top:148.3px;
+}
+.a11{
+left:74.9px;
+top:170.6px;
+}
+.a12{
+left:127.7px;
+top:143.2px;
+}
+.a13{
+left:223.1px;
+top:160.3px;
+}
+.a14{
+left:203.4px;
+top:225.7px;
+}
+.a15{
+left:75px;
+top:227.6px;
+}
