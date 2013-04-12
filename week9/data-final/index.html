@@ -41,66 +41,48 @@
         </div>
     <div id="data">
       <h1>Data</h1>
-      <!--query name or national name-->
+      <p>Spain is a very culturally diverse country with influences ranging from France all the way down to Lybia. Language is the best way to understand people's identity.</p>
       <div id="form">
-        <input name="name" placeholder="Name">
+        <input name="name" placeholder="Name" type="text" list="communities">
+        <datalist id="communities">
+          <option value="Aragonese"></option>
+          <option value="Aranese"></option>
+          <option value="Asturian"></option>
+          <option value="Basque"></option>
+          <option value="Catalan"></option>
+          <option value="Extremaduran"></option>
+          <option value="Galician"></option>
+          <option value="Spanish"></option>
+        </datalist>
         <br>
-        <input name="status" placeholder="National, regional or unrecognized?">
+        <input name="status" placeholder="Status. National, Regional or Unrecognized." type="text" list="status">
+        <datalist id="status">
+          <option value="National"></option>
+          <option value="Regional"></option>
+          <option value="Unrecognized"></option>
+        </datalist>
         <br>
         <input name="population" placeholder="Population">
         <br>
-        <form>
-          <select>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </form>
+
       </div>
       <button id="refresh">refresh</button>
       <div id='display'>
+
       </div>
-      <!--article class="listing">
-       <h3>Basque</h3>
-       <section>
-         <h5>Native Name:Euskera</h5>
-         <p>Status: Regionally official</p>
-         <br>
-         <h5>Population</h5>
-         <p>Native speakers: 715000</p>
-         <p>Second language: Insufficient Data</p>
-       </section>
-      </article-->
+
     </div>
 
   </div>
 <script type="text/javascript">
 $('#refresh').on('click',function(){
 
+  $.getJSON('http://localhost:8080/languages?' + '&callback=?', function (data){
+    var display = $('#display'),
+        data=JSON.stringify(data)
 
-  $.getJSON('http://localhost:8888/data?' + '&callback=?', function (data){
-    data=JSON.stringify(data)
-    display=$('#display')
     display.html(data)
   })
-
- // $('#refresh').on('click',function(){
- //    var query = $('#form').serialize()
- //    console.log('1')
- //    $.getJSON('http://localhost:8888/data' + query + '&callback=?', function (lang){
- //      console.log('2')
-
- //      var display = $('#data')
-
- //      display.empty()
-
- //      data.forEach(function(data){
- //        var languageElement = $('<article><h3>' + lang.name + '</h3></article>')
- //        display.append(languageElement)
- //      })
-
- //    });
- //  })
 
 })
 </script>

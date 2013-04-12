@@ -65,6 +65,11 @@ body a:active{
   float:right;
   width:340px;
 }
+#data p{
+  margin:20px 10px;
+  font-size:.6em;
+}
+
 #data h1{
   width:100%;
   text-align: center;
@@ -95,6 +100,13 @@ body a:active{
   display:block;
   height:25px;
   margin-bottom:5px;
+}
+
+#form p{
+  margin:0px 0px 0px 10px ;
+  font-size:.6em;
+  font-weight: 100;
+  font-style: italic;
 }
 
 #display{
