@@ -134,6 +134,10 @@ body a:active{
   opacity:1;
 }
 
+.imageComHover:hover{
+  opacity: .5;
+}
+
 .map{
   position:absolute;
   margin:auto;
