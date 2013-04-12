@@ -36,13 +36,22 @@ body a:active{
   border:2px solid #cacaca;
 }
 
-#refresh{
-  width:100%;
+#refresh, #all{
   padding:5% 0px;
   background:#eee;
   border:1px solid #eee;
   cursor:pointer;
-  margin-top: 3px;
+  margin-top: 18px;
+}
+
+#refresh{
+  width:85%;
+  float:left;
+}
+
+#all{
+  width:14.5%;
+  float:right;
 }
 
 #title{
@@ -70,10 +79,6 @@ body a:active{
 #data p{
   margin:20px 10px;
   font-size:.6em;
-}
-
-#refresh{
-  margin-top: 15px
 }
 
 #data h1{
