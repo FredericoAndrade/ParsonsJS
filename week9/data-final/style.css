@@ -79,17 +79,9 @@ body a:active{
   border-bottom: 5px solid #eee;
 }
 
-#data article.listing{
-  overflow: hidden;
-}
 
-#data article h3, #data article h5{
-    font-weight: 100;
-    display:block;
-    margin:15px 0px;
-}
-
-#data p.name{
+.listing{
+    overflow: auto;
     font-weight: 100;
     font-size: .6em;
     display:block;
@@ -127,7 +119,7 @@ body a:active{
   opacity: .2;
 }
 
-.imageCom:hover{
+.imageCom:hover,.imageComHover{
   opacity:1;
 }
 

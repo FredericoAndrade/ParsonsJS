@@ -24,10 +24,10 @@
     </div>
 <div class="map">
       <img src="images/1.png" class="imageCom a1" id="Galicia"/>
-      <img src="images/2.png" class="imageCom a2" id="Asturia"/>
+      <img src="images/2.png" class="imageCom a2" id="Asturias"/>
       <img src="images/3.png" class="imageCom a3" id="Castilla"/>
       <img src="images/4.png" class="imageCom a4" id="Cantabria"/>
-      <img src="images/5.png" class="imageCom a5" id="Basque Country"/>
+      <img src="images/5.png" class="imageCom a5" id="BasqueCountry"/>
       <img src="images/8.png" class="imageCom a8" id="Aragon"/>
       <img src="images/7.png" class="imageCom a7" id="Navarra"/>
       <img src="images/6.png" class="imageCom a6" id="La Rioja"/>
@@ -102,14 +102,25 @@
 
     data.forEach(function(lang){
 
-      var langElement = $('<article class="listing"><p class="name"><a href="#">'+ lang.name +' </a> <a href="#">'+ lang.status +' </a> <a href="#">'+ lang.populationL1 +' speakers</a></p></article>')
+      var langElement = $('<article class="listing"><a href="#" class='+ lang.name +'>'+ lang.name +' </a> <a href="#">'+ lang.status +' </a> <a href="#">'+ lang.populationL1 +' speakers</a></article>')
 
       display.append(langElement)
+
+      $('.'+lang.name).hover(function(){
+
+        if(lang.name == "Spanish"){
+          $('.imageCom').toggleClass('imageComHover')
+        }
+
+        $('#'+lang.distribution).toggleClass('imageComHover')
+      })
     })
 
   })
 
 })
+
+
 </script>
 </body>
 </html>
