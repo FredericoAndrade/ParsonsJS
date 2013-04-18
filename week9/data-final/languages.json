@@ -30,7 +30,8 @@
         "name": "Basque",
         "nativeName": "Euskera",
         "status": "Regional",
-        "distribution": "Basque",//+navarra
+        "distribution": "Basque",
+        "distribution2":"Navarra",
         "populationL1": 715000,
         "populationL2": "None - insufficient data",
         "id":4
@@ -57,7 +58,8 @@
         "name": "Catalan",
         "nativeName": "Català",
         "status": "Regional",
-        "distribution": "Cataluña",//+valencia
+        "distribution": "Cataluña",
+        "distribution2":"Valencia",
         "populationL1": 11500000,
         "populationL2": 500000,
         "id":9

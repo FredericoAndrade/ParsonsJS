@@ -1,0 +1,3 @@
+Web Advanced: Javascript - Final Project Proposal
+
+I would like to use canvas, touch events and data to produce a polished, robust payment visualization method using a pie chart as interface. I think its a much better way to visualize and interact with goal-oriented payments such as Kickstarter or Indiegogo than the traditionally divided visualization bar and external input field, and enables the user to better understand the direct consequence of his or her contribution. 
