@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+
+        </style>
+    </head>
+    <body>
+
+      <div id="box"></div>
+
+      <script>
+        var box = document.getElementById('box')
+
+        var targetRotations = {
+          x: 0,
+          y: 0
+        }
+
+        var currentRotations  = {
+          x: 0,
+          y: 0
+        }
+
+        window.addEventListener('deviceorientation', function (e){
+          targetRotations.x = -e.beta
+          targetRotations.z = -e.gamma
+        })
+
+        animate()
+        function animate (){
+          requestAnimationFrame(animate)
+
+
+        }
+      </script>
+
+
+    </body>
+</html>

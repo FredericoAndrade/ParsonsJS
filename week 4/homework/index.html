@@ -4,11 +4,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="http://fredericoandrade.com/images/favicon.ico">
         <title>FREDERICO ANDRADE - INTERACTION DESIGNER - Week 3 Homework, Generative Work</title>
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:100,400,700,100italic,400italic|Raleway:900' rel='stylesheet' type='text/css'>
     </head>
     <body style="margin:0px; background:#D2F7ED;">
 
+        <h1 style="width:600px; position:auto; z-index:10; margin:auto; font-family: 'Josefin Slab', serif; font-weight:400; font-style:italic; margin-top:50px; line-height:1.3em; background:rgba(255,255,255,.6); padding:30px; border-radius:4px;">Shenanigans!</span> <span style="font-weight:bold;">404!</h1>
 
-        <canvas id="canvas" width="200" height="740"></canvas>
+        <canvas id="canvas" width="200" height="740" style="position:absolute; z-index:0; top:0px;"></canvas>
         <script>
 
             var canvas = document.getElementById('canvas'),
@@ -30,7 +32,7 @@
             eye = "#EEE4DB",
             eyeBrow = "#5E4C2C",
             //hat = "#BDFDD5",
-            hat = "rgb(" + randomInt(100,200) + "," + randomInt(100,200) + "," + randomInt(100,200) + ")"    
+            hat = "rgb(" + randomInt(100,200) + "," + randomInt(100,200) + "," + randomInt(100,200) + ")"
             hatShadow = "#70967F",
             shadesSide = "#5C4A2B",
             shadesFrame = "#292113",
@@ -59,7 +61,7 @@
             floor = shirt,
             gravity = 0.3,
             scale = .4+Math.random()
-            
+
             function randomInt (min, max) {
                 return Math.round(Math.random() * (max - min) + min)
             }
@@ -67,7 +69,7 @@
 
 //droplet constructor
            function Droplet (x, y, radius, color, glaze) {
-                
+
                 this.x = x
                 this.y = y
                 this.radius = radius
@@ -107,28 +109,28 @@
             //     icecreamDrop.push(new Droplet())
             // }
 
-            
 
-            
+
+
             // start the animation
-            
+
             animate()
 
             function animate () {
                 requestAnimationFrame(animate)
-                
+
                 // clear the canvas
                 ctx.clearRect(0, 0,window.innerWidth,window.innerHeight)
 
                 // update and draw the circle on every frame
-                
+
                 droplet.update()
                 // ctx.save()
                 //
                 drawShape()
                 // ctx.restore()
                 droplet.draw()
-                
+
                 ctx.fillStyle=floor
                 ctx.fillRect(0,y+(741),width,10000)
                 //}
@@ -145,7 +147,7 @@
 				//body
 
 
-                    
+
                     ctx.fillStyle=skin; // skin color
                     //legs
                     ctx.fillRect(50+x,y+280,30,444)
@@ -179,7 +181,7 @@
                     //head
                     ctx.fillRect(73+x,y+36,45,18)
                     ctx.fillRect(74+x,y+25,43,67)
-                    
+
                     ctx.fillStyle=skinShadow // shadow color
                     ctx.strokeStyle=skinShadow // shadow color
                     ctx.lineWidth=1.5
@@ -216,7 +218,7 @@
                     ctx.closePath()
                     ctx.stroke()
 
-                    
+
                     //head
                     ctx.fillStyle=skinMidValue
                     ctx.strokeStyle=skinMidValue
@@ -260,7 +262,7 @@
                     ctx.arc(98+x,y+38,2,3,6,true)
                     ctx.closePath()
                     ctx.fill()
-                    
+
                     ctx.fillStyle=eyeBrow // skin color
                     ctx.fillRect(95+x,y+37,14,1)
                     ctx.beginPath()
@@ -287,7 +289,7 @@
                     ctx.arc(78+x,y+38,2,3,6,true)
                     ctx.closePath()
                     ctx.fill()
-                    
+
                     ctx.fillStyle=eyeBrow // skin color
                     ctx.fillRect(76+x,y+37,14,1)
                     ctx.beginPath()
@@ -381,7 +383,7 @@
                     ctx.arc(80+x,y+736,16,3,4.7,false)
                     ctx.stroke()
                     ctx.closePath()
-                    
+
                     ctx.beginPath()
                     ctx.arc(143+x,y+736,16,0,4.8,true)
                     ctx.moveTo(161+x,y+736)
@@ -451,7 +453,7 @@
                     ctx.lineTo(167+x,y+142)
                     ctx.closePath
                     ctx.fill()
-                    
+
                     //icecream arm
                     ctx.fillStyle=armShadow//shadows
                     ctx.beginPath()
@@ -532,12 +534,12 @@
                     ctx.lineWidth=1
                     ctx.beginPath()
                     ctx.arc(193+x,y+502,16,-70*Math.PI/180,159*Math.PI/180,true)
-                    ctx.stroke()             
+                    ctx.stroke()
                     ctx.closePath()
 
                     ctx.beginPath()
                     ctx.arc(155+x,y+467,25,20*Math.PI/180,60*Math.PI/180,false)
-                    ctx.stroke()             
+                    ctx.stroke()
                     ctx.closePath()
 
                     ctx.restore()
@@ -569,7 +571,7 @@
                     ctx.closePath()
                     ctx.fill()
 
-                    
+
 
 
 			}
