@@ -26,10 +26,11 @@
 
         <script>
 //mathematic values
-        var goal=100,
-			detail=20,
+        var goal=312.44,
+			detail=87.48,
             sets = 12,
-            current = 18,
+            current = 0,
+            bank='Bank of America',
             target = [],
             //holds the x and y coordinates for click on canvas
             tarX =[],
@@ -47,23 +48,18 @@
                 <h1 class="goal"><span class="bold">$<script type="text/javascript">
                     document.write(goal);
                     </script></span>
-                    per set of
-                    <br>
-                    <span class="bold">
-                    <script type="text/javascript">
-                    document.write(detail);
-                    </script></span> kitchen sets
+                    available in your<br> <script type="text/javascript">
+                    document.write(bank);
+                    </script> account.
                 </h1>
                 <h1 class="goal">
-                    <span
-                    class="bold">
-                    <script type="text/javascript">
-                    document.write(sets);
+                    Spending<br>
+                    <span class="bold">$<script type="text/javascript">
+                    document.write(detail);
                     </script></span>
-                    sets <br>funded
                 </h1>
             </div>
-            <div id="valueBox">
+            <!--div id="valueBox">
                     <canvas
                         id="val"
                         width="100"
@@ -76,36 +72,32 @@
                         type="number"
                         step="1"
                         min="0"
-                        value='0'
-                        />
-                        <!--Value does not change based on fill Value-->
-                </div>
+                        value='87.48'
+                        /-->
+                        <!--Value does not change based on fill Value>
+                </div-->
             <!--on click - fires event-->
             <canvas
-                onmousedown="showCoords(event)"
                 id="canvas"
                 width="448"
                 height="448">
             </canvas><!--canvas size determined here-->
-            <h2 class="info">select your contribution on the circle above</h1>
+            <h2 class="info">the above circle represents your available funds</h1>
         </div>
     </div>
         <script href="js/vendors.js"></script>
         <script>
-//request animation frame vendors
-
-
 //variables
 		var canvas = document.getElementById('canvas'),
-            ctx = canvas.getContext('2d'),
-            valueCanvas =document.getElementById('val'),
-            c2 = valueCanvas.getContext('2d')
-            inputField = document.getElementById("input")
+            ctx = canvas.getContext('2d')
+            //valueCanvas =document.getElementById('val'),
+            //c2 = valueCanvas.getContext('2d')
+            //inputField = document.getElementById("input")
 
-            inputField.addEventListener("change",false)
+            //inputField.addEventListener("change",false)
 
         function inputFieldUpdate() {
-            target=(inputField.value);
+            target=detail;
         }
 
 //graphic values
@@ -114,8 +106,8 @@
             lineW = 1.2*(radius),
             core = (radius/3.5),
             rot = Math.PI*-.5,
-            bColor = '#F4F4F4', //#ffa8ba pink
-            metColor = "rgba(255,22,70,.85)",
+            metColor = '#F4F4F4', //#ffa8ba pink
+            bColor = "rgba(255,22,70,.85)",
             tarColor = "rgba(154,22,70,.85)",
             ease = 5
 
@@ -250,7 +242,7 @@
             ctx.stroke();
             }
 
-        function valBox () {
+        function valBox1 () {
             c2.fillStyle="rgba(250,250,250,.96)";
             c2.strokeStyle="rgba(245,245,245,.96)";
             c2.beginPath();
@@ -270,10 +262,9 @@
             c2.lineTo(15,55);
             c2.lineTo(100,55);
             c2.stroke();
-
         }
 
-        valBox()
+        //valBox()
         </script>
 
     </body>

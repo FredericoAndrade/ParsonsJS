@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "Payment GUI",
+    "description": "Better understand how you spend your money with this handy graphic interface.",
+    "version": "0.0.1",
+
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    } ,
+
+    "content_scripts": [
+        {
+            "matches": ["http://www.seamless.com/*"],
+            "css": [
+                "style.css"
+            ],
+            "js": [
+                "main.js"
+            ]
+        }
+    ]
+}
+
