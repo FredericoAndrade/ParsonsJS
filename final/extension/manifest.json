@@ -1,19 +1,20 @@
 {
     "manifest_version": 2,
+
     "name": "Third",
+    "description": "Better understand how you spend your money with this handy graphic interface.",
+    "version": "0.1.1",
 
     "permissions": ["contextMenus"],
+
+    "background": {
+    "scripts": ["background.js"]
+    },
 
     "icons": {
     "16": "images/icon-bitty.png",
     "48": "images/icon-small.png",
     "128": "images/icon-large.png"
-    },
-
-    "description": "Better understand how you spend your money with this handy graphic interface.",
-    "version": "0.1.1",
-    "background": {
-        "scripts": ["background.js"]
     },
 
     "content_scripts": [

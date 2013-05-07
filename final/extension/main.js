@@ -3,14 +3,28 @@
         target=[],
         //modifier
         currentAngle = (current/goal)*360,
-        link = document.getElementById('updateStep3Link'),
         form = document.getElementById('orderInformationForm'),
         price = document.getElementById('grandTotalDisplay'),
         totals = document.getElementById('orderTotals'),
         menuItem = document.getElementsByClassName('menuItems'),
         el = document.createElement('div'),
         price = document.getElementsByClassName('price'),
-        grandTotal = document.getElementById('grandTotal')
+//Hi there Evan,
+//the following variables try to read the total value input field that they provide on seamless.
+//This grandTotal field shows up when you add your first item to the cart.
+//It is also hidden.
+//For some reason, it always reads as null, and I can not get at it's value :'(
+//Any idea how I can address this?
+//Thanks :)
+        grandTotal = document.getElementById('grandTotal'),
+        totalCost = grandTotal
+
+        function changes(){
+            console.log('hi')
+        }
+
+//Hi again, comment me out to make code work again :)
+        grandTotal.addEventListener('input',changes,false)
 
 
 //vendors
@@ -65,7 +79,7 @@ function drawCircle(){
             ctx = canvas.getContext("2d")
 
         function inputFieldUpdate() {
-            target=grandTotal.value;
+            target=totalCost;
         }
 
 //graphic values
@@ -174,7 +188,6 @@ function drawCircle(){
             full();
             pie.draw();
             inputFieldUpdate();
-            console.log(grandTotal.value)
         }
 
         //re-draw the full chart on under the updated arc
