@@ -1,7 +1,6 @@
  var    goal=312.44,
-        detail=87.48,
-        sets = 12,
         current = 0,
+        grandTotal = 50,
         target=[],
         //modifier
         currentAngle = (current/goal)*360,
@@ -10,8 +9,10 @@
         price = document.getElementById('grandTotalDisplay'),
         totals = document.getElementById('orderTotals'),
         menuItem = document.getElementsByClassName('menuItems'),
-        el = document.createElement('div'),
-        bank = 'Chase bank'
+        el = document.createElement('div')
+
+
+
 
 //vendors
 function vendor() {
@@ -65,7 +66,7 @@ function drawCircle(){
             ctx = canvas.getContext("2d")
 
         function inputFieldUpdate() {
-            target=detail;
+            target=grandTotal;
         }
 
 //graphic values
@@ -209,10 +210,11 @@ function drawCircle(){
             }
         }
 
-    form.parentNode.insertBefore(el, form)
+
 
 window.onload = function(){
-vendor()
-createDom()
-drawCircle()
+    form.parentNode.insertBefore(el, form)
+    vendor()
+    createDom()
+    drawCircle()
 }
