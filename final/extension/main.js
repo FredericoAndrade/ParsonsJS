@@ -1,6 +1,5 @@
  var    goal=312.44,
         current = 0,
-        grandTotal = 50,
         target=[],
         //modifier
         currentAngle = (current/goal)*360,
@@ -9,9 +8,9 @@
         price = document.getElementById('grandTotalDisplay'),
         totals = document.getElementById('orderTotals'),
         menuItem = document.getElementsByClassName('menuItems'),
-        el = document.createElement('div')
-
-
+        el = document.createElement('div'),
+        price = document.getElementsByClassName('price'),
+        grandTotal = document.getElementById('grandTotal')
 
 
 //vendors
@@ -66,7 +65,7 @@ function drawCircle(){
             ctx = canvas.getContext("2d")
 
         function inputFieldUpdate() {
-            target=grandTotal;
+            target=grandTotal.value;
         }
 
 //graphic values
@@ -175,6 +174,7 @@ function drawCircle(){
             full();
             pie.draw();
             inputFieldUpdate();
+            console.log(grandTotal.value)
         }
 
         //re-draw the full chart on under the updated arc
