@@ -1,233 +1,221 @@
- var    goal=312.44,
+window.onload = function(){
+ var    goal=100,
         current = 0,
+        bank = 'Bank of America',
         target=[],
         //modifier
         currentAngle = (current/goal)*360,
         form = document.getElementById('orderInformationForm'),
-        price = document.getElementById('grandTotalDisplay'),
-        totals = document.getElementById('orderTotals'),
-        menuItem = document.getElementsByClassName('menuItems'),
         el = document.createElement('div'),
-        price = document.getElementsByClassName('price'),
-//Hi there Evan,
-//the following variables try to read the total value input field that they provide on seamless.
-//This grandTotal field shows up when you add your first item to the cart.
-//It is also hidden.
-//For some reason, it always reads as null, and I can not get at it's value :'(
-//Any idea how I can address this?
-//Thanks :)
-        grandTotal = document.getElementById('grandTotal'),
-        totalCost = grandTotal
+        totalCost = document.getElementById('grandTotal'),
+        //call parent area of grand total so as to catch event bubble up
+        area = document.getElementById('orderTotalsAjaxArea'),
+        addItem = document.getElementById('addItem'),
+        grandTotal = null,
+        minimum = null
 
-        function changes(){
-            console.log('hi')
-        }
-
-//Hi again, comment me out to make code work again :)
-        grandTotal.addEventListener('input',changes,false)
-
-
-//vendors
+//requestAnimationFrame vendors
 function vendor() {
-            var lastTime = 0;
-            var vendors = ['ms', 'moz', 'webkit', 'o'];
-            for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-                window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-                window.cancelAnimationFrame =
-                  window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-            }
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
 
-            if (!window.requestAnimationFrame)
-                window.requestAnimationFrame = function(callback, element) {
-                    var currTime = new Date().getTime();
-                    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-                    var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-                      timeToCall);
-                    lastTime = currTime + timeToCall;
-                    return id;
-                };
-
-            if (!window.cancelAnimationFrame)
-                window.cancelAnimationFrame = function(id) {
-                    clearTimeout(id);
-                };
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
         };
 
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+};
+
+//bug - variables do not call native html objects
 function createDom () {
     el.classList.add('chart')
     el.innerHTML = '<div id="overlay">\
                         <div id="readout">\
-                            <h1 class="goal"><span class="bold">$214\
-                                <script type="text/javascript">\
-                                    document.write(goal);\
-                                </script></span>\
-                                available in your<br> \
-                                <script type="text/javascript">\
-                                    document.write(bank);\
-                                </script>Bank of America account.\
-                            </h1>\
+                            <div class="goal">\
+                            <a id="settingsIcon" class="extensionInactive"></a>\
+                            <h1>$'+(goal)+' Budgeted\
+                                </h1>\
+                            </div>\
+                        </div>\
+                        <div id="extensionEnvelope">\
+                            <ul id="extensionSettings">\
+                                <a id="eSetMenu1"><li class="extensionSubmenu">Change Bank</li></a>\
+                                <a id="eSetMenu2"><input class="extensionSubmenu" id="eSec" type="number" placeholder="Edit Budget"></input></a>\
+                                <a id="eSetMenu3">\
+                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"  class="extensionSubmenu eLast">\
+                                    <input type="hidden" name="cmd" value="_s-xclick">\
+                                    <input type="hidden" name="hosted_button_id" value="AD9F7T8QEUEXL">\
+                                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">\
+                                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">\
+                                    </form>\
+                                </a>\
+                            </ul>\
                         </div>\
                         <canvas id="canvas" width="270" height="270">\
                         </canvas>\
-                        <h2 class="info">the above circle represents your available funds</h1>\
                     </div>'
                 }
 
 function drawCircle(){
-//variables
-        var canvas = document.getElementById("canvas"),
-            ctx = canvas.getContext("2d")
+    var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext("2d"),
+        //graphic values
+        origin = 135,
+        radius = 60,
+        lineW = 1.7*(radius),
+        core = (radius/3.5),
+        rot = Math.PI*-.5,
+        color1 = "rgba(255,22,70,.85)",
+        color2 = "rgba(154,22,70,.85)",
+        color3 = "rgba(55,22,70,.85)",
+        ease = 5
 
-        function inputFieldUpdate() {
-            target=totalCost;
-        }
-
-//graphic values
-        var origin = 135,
-            radius = 70,
-            lineW = 1.2*(radius),
-            core = (radius/3.5),
-            rot = Math.PI*-.5,
-            metColor = "#F4F4F4", //#ffa8ba pink -- existing color
-            bColor = "rgba(255,22,70,.85)",//background color
-            tarColor = "rgba(154,22,70,.85)",
-            ease = 5
-
-            //pie-chart mouse-click value log
-        function showCoords(evt){
-            var eY = evt.layerY,
-                eX = evt.layerX,
-                pY = evt.pageY,
-                pX = evt.pageX
-
-                //this breaks the chart into sectors
-                //then it figures out the angle of the click from the origin
-                s1 = (Math.atan2(eX-origin,origin-eY))*180/Math.PI,
-                s2 = (Math.atan(((eY-origin)*-1)/(eX-origin)*-1)*180/Math.PI)+90,
-                s3 = 270-((Math.atan((eY-origin)/(origin-eX)))*180/Math.PI),
-                s4 = 270+(Math.atan((origin-eY)/((origin-eX)))*180/Math.PI)
-
-        //then it converts it to dollar value
-            if
-                (eX >= origin && eY <= origin)
-                {target=(s1*(goal/360)-current)}
-            else if
-                (eX >= origin && eY >= origin)
-                {target=(s2*(goal/360)-current)}
-            else if
-                (eX <= origin && eY >= origin)
-                {target=(s3*(goal/360)-current)}
-            else if
-                (eX <= origin && eY <= origin)
-                {target=(s4*(goal/360)-current)}
-
-        //console.log('$'+Math.round(target))
-
-        //make input field show click value
-        document.getElementById('input').value=Math.round(target);
-
-        document.getElementById('valueBox').style.display='block';
-
-        tarX=pX
-        tarY=pY
-
-        tarBox()
-
-
-        }
+    function inputFieldUpdate() {
+        target = grandTotal;
+    }
 
 //constructor
-        function Pie(f){
-//finish angle
-            this.f=f
-        }
+// f = finish angle
+    function Pie(f){
+        this.f=f
+    }
 
 //prototype
-        Pie.prototype.update = function() {
-            if(showCoords){this.f += (target-this.f)/ease;}
+    Pie.prototype.update = function() {
+            this.f += (target-this.f)/ease;
+    }
 
-            //does not work
-            else {
-            this.f += (document.getElementById("input").value - this.f) / ease;
-            this.f == (document.getElementById("canvas").onmousedown.value - this.f)
-            }
+    Pie.prototype.draw = function() {
+        ctx.strokeStyle=color2;
+        ctx.lineWidth = lineW;
+        ctx.beginPath();
+        ctx.arc(
+            origin,
+            origin,
+            radius,
+        //start angle
+            (currentAngle*Math.PI/180)+rot,
+        //end angle
+            ((currentAngle+(this.f/goal*360))*Math.PI/180)+rot,
+            false);
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    var pie = new Pie (0)
+
+    animate()
+
+    function animate(){
+        requestAnimationFrame(animate);
+        pie.update();
+        full();
+        pie.draw();
+        inputFieldUpdate();
+    }
+
+    //re-draw the full chart on under the updated arc
+    function full(){
+    //box
+        ctx.clearRect(0,0,origin*2,origin*2);
+    //background arc
+        ctx.strokeStyle=color1;
+        ctx.lineWidth = lineW;
+        ctx.beginPath();
+        ctx.arc(
+            origin,
+            origin,
+            radius,
+            0*Math.PI/180,
+            360*Math.PI/180,
+            false);
+        ctx.stroke();
+
+    //already met
+        ctx.strokeStyle=color3;
+        ctx.lineWidth = lineW;
+        ctx.beginPath();
+        ctx.arc(
+            origin,
+            origin,
+            radius,
+            0*Math.PI/180+rot,
+            currentAngle*Math.PI/180+rot,
+            false);
+        ctx.stroke();
+    }
+}
+
+//injects dom
+form.parentNode.insertBefore(el, form)
+createDom()
+vendor()
+drawCircle()
+
+//reads order value
+function pollTotal () {
+    var total = document.getElementById('grandTotal')
+    if (total) {
+        grandTotal = +(total.value.replace('$', ''))
+    }
+    setTimeout(pollTotal, 100)
+}
+pollTotal()
+
+//extension menu
+var eSet = document.getElementById('extensionSettings'),
+setIcon = document.getElementById('settingsIcon'),
+setMen2 = document.getElementById('eSetMenu2'),
+e2input = document.getElementById('eSec'),
+e2Val = document.getElementById('eSec').value,
+eChart = document.querySelectorAll(".chart"),
+eSlide = document.querySelectorAll(".extensionSlide")
+
+
+// toggle classes
+function hasClass(elem, className) {
+    return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
+}
+
+function toggleClass(elem, className) {
+    var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, " " ) + ' ';
+    if (hasClass(elem, className)) {
+        while (newClass.indexOf(" " + className + " ") >= 0 ) {
+            newClass = newClass.replace( " " + className + " " , " " );
         }
+        elem.className = newClass.replace(/^\s+|\s+$/g, '');
+    } else {
+        elem.className += ' ' + className;
+    }
+}
 
-        Pie.prototype.draw = function() {
-            ctx.strokeStyle=tarColor;
-            ctx.lineWidth = lineW;
-            ctx.beginPath();
-//update
-            ctx.arc(
-                origin,
-                origin,
-                radius,
-            //start angle
-                (currentAngle*Math.PI/180)+rot,
-            //end angle
-                ((currentAngle+(this.f/goal*360))*Math.PI/180)+rot,
-                false);
-            ctx.stroke();
-            ctx.restore();
-        }
+//settings transitions
 
-//target value box position update
-        function tarBox() {
-            var vBox = document.getElementById("valueBox");
-            vBox.style.left=tarX+"px";
-            vBox.style.top=tarY+"px";
-        }
+setIcon.onclick = function(){
+    toggleClass(eSet,'extensionSlide')
+    toggleClass(setIcon,'extensionActive')
+}
 
-        var pie = new Pie (0)
+//budget set
+setMen2.onclick = function (){
+    e2input.addEventListener('change',function(){
+        goal = e2input.value
+        console.log(goal)
+    })
+}
 
-        animate()
-
-        function animate(){
-            requestAnimationFrame(animate);
-            pie.update();
-            full();
-            pie.draw();
-            inputFieldUpdate();
-        }
-
-        //re-draw the full chart on under the updated arc
-        function full(){
-        //box
-            ctx.clearRect(0,0,origin*2,origin*2);
-
-        //background
-            ctx.strokeStyle=bColor;
-            ctx.lineWidth = lineW;
-            ctx.beginPath();
-            ctx.arc(
-                origin,
-                origin,
-                radius,
-                0*Math.PI/180,
-                360*Math.PI/180,
-                false);
-            ctx.stroke();
-
-        //already met
-            ctx.strokeStyle=metColor;
-            ctx.lineWidth = lineW;
-            ctx.beginPath();
-            ctx.arc(
-                origin,
-                origin,
-                radius,
-                0*Math.PI/180+rot,
-                currentAngle*Math.PI/180+rot,
-                false);
-            ctx.stroke();
-            }
-        }
-
-
-
-window.onload = function(){
-    form.parentNode.insertBefore(el, form)
-    vendor()
-    createDom()
-    drawCircle()
 }
